@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
 
   get '/' do 
+    if logged_in? 
+      redirect '/tweets' 
+    end 
     erb :'users/index'
   end 
 
