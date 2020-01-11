@@ -1,0 +1,11 @@
+<% if current_user == @tweet.user %>
+  <form action="/tweets/<%= @tweet.id %>" method="post">
+    <!--post gets translated to a patch request-->
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <h3> Original Tweet:</h3>
+    <ul><li><%= @tweet.content %></li></ul><br>
+    <h3> Edit Tweet:</h3>
+    <input type="text" name="tweet[content]" id="content" value="<%=@tweet.content %>" placeholder="edit content here:" required>
+    <input type="submit" name="submit" value="submit">
+  </form>
+<% end %>

@@ -1,0 +1,17 @@
+<h2>Tweet #<%= @tweet.id %>:</h2>
+
+<% if logged_in? %>
+  <br>
+  <ul>
+    <li><%= @tweet.content %></li>
+  </ul>
+  <!--Make sure that edit button is only available if current_user owns the tweet-->
+    <br></br>
+    <a href="/tweets/<%= @tweet.id %>/edit">Edit Tweet</a>
+    
+    
+    <form action="/tweets/<%= @tweet.id %>/delete" method="POST">
+      <input id="hidden" type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Delete Tweet">
+    </form>
+<% end %>

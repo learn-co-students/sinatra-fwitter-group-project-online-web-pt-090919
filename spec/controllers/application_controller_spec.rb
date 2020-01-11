@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe ApplicationController do
 
@@ -58,7 +59,6 @@ describe ApplicationController do
     end
 
     it 'does not let a logged in user view the signup page' do
-      #user = User.create(:username => "skittles123", :email => "skittles@aol.com", :password => "rainbows")
       params = {
         :username => "skittles123",
         :email => "skittles@aol.com",
@@ -76,7 +76,7 @@ describe ApplicationController do
       expect(last_response.status).to eq(200)
     end
 
-    it 'loads the tweets index after login' do
+    it 'loads the tweets index after login' do 
       user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
       params = {
         :username => "becky567",
@@ -213,6 +213,7 @@ describe ApplicationController do
         tweet = Tweet.find_by(:content => "tweet!!!")
         expect(tweet).to be_instance_of(Tweet)
         expect(tweet.user_id).to eq(user.id)
+        
         expect(page.status_code).to eq(200)
       end
 

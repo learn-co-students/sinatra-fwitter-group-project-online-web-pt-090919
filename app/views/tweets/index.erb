@@ -1,0 +1,12 @@
+<h2>Welcome, <%= @user.username %></h2>
+<h3>Twitter Feed: </h4>
+<% if @tweets.empty? %>
+  <h4>There are no tweets.</h4>
+<% else %>
+  <h4>All Tweets: </h4>
+  <ul>
+    <% @tweets.each do |tweet| %>
+      <li><%= tweet.content %></li>
+    <% end %>
+  </ul><hr>
+<% end %>
