@@ -18,7 +18,8 @@ You'll be implementing Fwitter using multiple objects that interact, including
 separate classes for User and Tweet.
 
 Just like with Twitter, a user should not be able to take any actions (except
-sign-up), unless they are logged in. Once a user is logged in, they should be
+sign-up), unless they are logged in. Once a user is logged in, they should belearn
+
 able to create, edit and delete their own tweets, as well as view all the
 tweets.
 
