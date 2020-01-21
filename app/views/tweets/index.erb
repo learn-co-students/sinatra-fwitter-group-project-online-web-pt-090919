@@ -1,0 +1,5 @@
+<% if current_user == tweet.user %>
+<% @tweets.each do |tweet| %>
+<li><%= tweet %></li>
+<% end %>
+<% end % >
