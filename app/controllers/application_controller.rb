@@ -5,6 +5,8 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    enable :sessions
+    set :sessions_secret, enigma
   end
   
   get '/' do
@@ -22,7 +24,7 @@ class ApplicationController < Sinatra::Base
     
     def require_login
       unless is_logged_in?
-      redirect "/"
+      redirect "/login"
     end
     end
     
