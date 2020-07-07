@@ -1,30 +1,54 @@
 require './config/environment'
+require 'pry'
 
 class ApplicationController < Sinatra::Base
 
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
-    enable :sessions 
-    set :session_secret, "fwitter-secret"
+    enable :sessions
+    set :session_secret, "secret"
+  end  
+
+  get '/' do
+    erb :index
   end
   
-  get '/' do 
-    erb :"/index"
+  get '/signup' do 
+    erb :'/users/signup'
   end
 
+  # post '/signup' do 
+  #   @user = User.new(username: params[:username], email: params[:email], password: params[:password])
+    
+  #   if @user.save 
+  #     session[:username] = @user.username
+  #     redirect_to '/tweets'
+  #   # else
+  #   #   erb :'/users/signup'
+  #   end
+  # end
   
-
-  # HELPERS
-
-  def is_logged_in?
-    !!current_user
+  post '/signup' do
+      
+      if !(params.has_value?(""))
+          user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
+        binding.pry
+          session["user_id"] = user.id 
+          redirect to "/tweets"
+      else
+          redirect to "/signup"
+      end
   end
 
-  def current_user
-    if session[:user_id]
-      @current_user = User.find_by(id: session[:user_id])
+  helpers do
+    def current_user
+      @user ||= User.find_by_id(session[:user_id])
+      
+    end
+  
+    def is_logged_in?
+      !!current_user
     end
   end
-
 end
